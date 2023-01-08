@@ -1,0 +1,11 @@
+Function,Active
+basicInfo,True
+uniqueID,True
+uniqueType,True
+countSource,True
+countType,True
+entireChromosome,True
+unassembledSequence,True
+only_ensembl_havana,True
+entries_ensembl_havana,True
+ensembl_havana_genes,True

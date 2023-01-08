@@ -1,0 +1,46 @@
+<html>
+        <head>
+            <title> ANNOTATION</title>
+        </head>
+        <body>
+            <h1> This is PUSSY a web page to view and analyse gff3 files </h1>
+            <p>
+                <h3> select here your .gff3 file </h3>
+
+            <form method="post" action="/select">
+              <select name="gff3" id="gff3">
+                {% for fn in filenames %}
+                 <option> {{ fn }} </option>
+                {% endfor %}
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+
+            </p>
+
+            Or upload a file from your computer
+			<form action='loadFile'>
+				<input type="file" id="file" name="file" accept />
+			</form>
+
+            <form method="post" action="/">
+                <input type="submit" value="loadDSButton" name="loadDS"/>
+            </form>
+
+
+            <h4> active operations </h4>
+                <ul>
+                    <li><a href="/basicinfo"> getting the some basic information about the dataset </a></li>
+                    <li><a href="/listID"> obtaining the list of unique sequence IDs available in the dataset </a></li>
+                    <li><a href="/optypes">obtaining the list of unique type of operations available in the dataset</a></li>
+                    <li><a href="/countft">counting the number of features provided by the same source</a></li>
+                    <li><a href="/entries">counting the number of entries for each type of operation</a></li>
+                    <li><a href="/chromosome">deriving a new dataset containing only the information about entire chromosomes</a></li>
+                    <li><a href="/unassembledsq">calculating the fraction of unassembled sequences from source GRCh38</a></li>
+                    <li><a href="/onlyhavensbentries">obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana</a></li>
+                    <li><a href="/counthavensblentries">counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana</a></li>
+                    <li><a href="/havensblgenenames">returning the gene names from the dataset containing containing only entries from source ensembl ,havana and ensembl_havana</a></li>
+                </ul>
+            <p> paragraph </p>
+        </body>
+</html>
