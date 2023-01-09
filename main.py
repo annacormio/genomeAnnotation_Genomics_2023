@@ -1,21 +1,46 @@
 from flask import Flask, render_template, request
-
+from DatasetOps import *
 from Reader import *
+import os
+
+# Active Functions filename
+defaultActiveFileName = 'settings/activeFunctions.csv'
 
 app = Flask("Gene annotation")
 filenames = []
+dsOps = []
 
-# create web resources
+# create web homepage
 @app.route('/')
 def homepage():
-    return render_template('homepage.html',
-                           filenames=filenames)  # function used to import a html file into the py program without having to write in ptython
+    return render_template('homepage.html')  # function used to import a html file into the py program without having to write in ptython
 
+#getting the file
+'''
+@app.route('/activeoperations', methods = ['GET', 'POST'])
+def activeop():
+
+    if request.method == 'POST':
+        f = request.form['file']
+        f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+        # Reading the files
+        ds = Gff3Reader(f).read()
+        dfAct = CsvReader(defaultActiveFileName).read().df
+
+
+        dsOps = DatasetOps(ds, dfAct)
+
+    return render_template('active_operations.html',file=f)
+'''
 
 # create other pages for operation display
+
+
+
 @app.route('/basicinfo')  # when on the web the user uses that / the function underneath is executed
 def a():
-    return 'This is the page in which i display the basic info'
+    return
 
 
 @app.route('/listID')  # when on the web the user uses that / the function underneath is executed
@@ -64,30 +89,38 @@ def l():
 
 
 
-
+''''''
 @app.route("/", methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        dsSelected = Gff3Reader(request.form.get("gff3")).read()
+        #dsSelected = Gff3Reader(request.form.get("gff3")).read()
 
-        if request.form.get('loadDS') == 'loadDSButton':
-            print("VAF")  # do something
-            print(request.form['gff3'])
-            print(dsSelected)
 
-        #elif request.form.get('gff3'):
+        if 'dsFile' in request.files:
+            f = request.files['dsFile']
+           # f.save(os.path.join(app.config['UPLOAD_FOLDER'], f.filename))
+            # Reading the files
+            ds = Gff3Reader(f).read()
+            dfAct = CsvReader(defaultActiveFileName).read().df
+
+            dsOps = DatasetOps(ds, dfAct)
+            return render_template('active_operations.html')
+
+        elif #se viene da pulsante unique Id :
+            #dfOps.uniqueid
+
         #    pass  # do something else
         else:
             pass  # unknown
-    # elif request.method == 'GET':
+    #elif request.method == 'GET':
     #    return render_template('index.html', form=form)
 
-
+''''''
 if __name__ == "__main__":
-
+    app.run(port=80)  # we want to have our application available online, port 80 is the default for http
     # --------------------------------------------------------------------------------------------------
     # Dataset filenames (folder "/dataset")
-
+'''
     import glob, os
 
     os.chdir("dataset/")
@@ -99,8 +132,36 @@ if __name__ == "__main__":
     activeFileName = '../settings/activeFunctions.csv'
 
     # Reading the files
-    dsAct = CsvReader(activeFileName).read().df
-
+    dfAct = CsvReader(activeFileName).read().df
+    
     # dsOps = DatasetOps(ds, dsAct)
+    
+'''
+'''
+    < p > select
+    here
+    your.gff3
+    file
+    from the dropdown
 
-    app.run(port=80)  # we want to have our application available online, port 80 is the default for http
+DROPDOWN BOX
+    < form
+    method = "post"
+    action = "/select" >
+    < select
+    name = "gff3"
+    id = "gff3" >
+    { %
+    for fn in filenames %}
+    < option > {{fn}} < / option >
+{ % endfor %}
+< / select >
+
+< / form >
+
+< / p >
+BUTTON FOR LOADING
+<form method="post" action="/">
+                <input type="submit" value="loadDSButton" name="loadDS"/>
+            </form>
+'''

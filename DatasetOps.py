@@ -4,9 +4,10 @@ import pandas as pd
 def active(func):
     def wrapper(*args):
         self = args[0]  # in a Python decorator, args[0] corresponds to "self"
-        dsAct = self.dsAct
+        dfAct = self.dfAct
         funcName = func.__name__
-        funcrow = dsAct[dsAct['Function'] == funcName]  # if the function exists, funcrow has only 1 row
+        #filtering rows of the data
+        funcrow = dfAct[dfAct['Function'] == funcName]  # if the function exists, funcrow has only 1 row
 
         if (funcrow.shape[0] == 1) and (funcrow.iloc[0]['Active'] == True):
             return func(self)
@@ -15,12 +16,11 @@ def active(func):
 
     return wrapper
 
-
+#cannot import dataset reader cuz we would have a circular calling of classes
 class DatasetOps:
-
-    def __init__(self, ds, dsAct):
+    def __init__(self, ds:Dataset, dsAct):
         self.ds = ds
-        self.dsAct = dsAct
+        self.dsAct = dsAct #this can be
 
     @active
     def basicInfo(self):

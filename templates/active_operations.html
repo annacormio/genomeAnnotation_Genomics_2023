@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>
+        ACTIVE OPERATIONS
+        <form id = 'fileForm'  method = 'POST'>
+
+				<input type="file" name="file" id="file" accept=".gff3">
+                <input type="submit" value="Upload">
+            </form>
+    </title>
+</head>
+<body>
+<ul>
+    <li><a href="/basicinfo"> getting the some basic information about the dataset </a></li>
+    <li><a href="/listID"> obtaining the list of unique sequence IDs available in the dataset </a></li>
+    <li><a href="/optypes">obtaining the list of unique type of operations available in the dataset</a></li>
+    <li><a href="/countft">counting the number of features provided by the same source</a></li>
+    <li><a href="/entries">counting the number of entries for each type of operation</a></li>
+    <li><a href="/chromosome">deriving a new dataset containing only the information about entire chromosomes</a></li>
+    <li><a href="/unassembledsq">calculating the fraction of unassembled sequences from source GRCh38</a></li>
+    <li><a href="/onlyhavensbentries">obtaining a new dataset containing only entries from source ensembl , havana and ensembl_havana</a></li>
+    <li><a href="/counthavensblentries">counting the number of entries for each type of operation for the dataset containing containing only entries from source ensembl , havana and ensembl_havana</a></li>
+    <li><a href="/havensblgenenames">returning the gene names from the dataset containing containing only entries from source ensembl ,havana and ensembl_havana</a></li>
+</ul>
+
+</body>
+
+
+</html>
