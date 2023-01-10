@@ -52,8 +52,9 @@ class DatasetOps:
 
     @active
     def entireChromosome(self):
-        # fattibile anche con groupby + get_group , la drop elimina la colonna source
-        return Dataset(self.ds.df[self.ds.df['source'] == 'GRCh38'].drop(columns=['source']))
+        #select from the column source only the lines having GRCh38 as source
+        return Dataset(self.ds.df[self.ds.df['source'] == 'GRCh38'].drop(columns=['source'])) #we drop the source column from the dataframe
+                                                                       # because it will provide only GRCh38 sources since that was the filtering parameter
 
     @active
     def unassembledSequence(self):
@@ -75,7 +76,7 @@ class DatasetOps:
     @active
     def entries_ensembl_havana(self):
         filtered_ds = self.only_ensembl_havana()
-        return DatasetOps(filtered_ds, self.dsAct).countType()
+        return DatasetOps(filtered_ds, self.dfAct).countType()
 
     @active
     def ensembl_havana_genes(self):

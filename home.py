@@ -15,6 +15,7 @@ dfAct = CsvReader(defaultActiveFileName).read().df
 #creating the DatasetOperation object with the ds and the dfAct just read
 dsOps = DatasetOps(ds, dfAct)
 
+
 #homepage
 @app.route('/')
 def homepage():
@@ -42,23 +43,23 @@ def c():
 
 @app.route('/countSource')  # when on the web the user uses that / the function underneath is executed
 def d():
-    countS = dsOps.countSource().df.to_html()
+    countS = dsOps.countSource().df.to_frame(name='count').to_html()
     return f'''{countS}'''
-    return 'This is the page in which i display the count of features from one source'
+
 
 
 @app.route('/countType')  # when on the web the user uses that / the function underneath is executed
 def e():
-    countT = dsOps.countType().df.to_html()
+    countT = dsOps.countType().df.to_frame(name='count').to_html()
     return f'''{countT}'''
-    return 'This is the page in which i display the number of entries for the operations'
+
 
 
 @app.route('/chromosome')  # when on the web the user uses that / the function underneath is executed
 def f():
     chrom = dsOps.entireChromosome().df.to_html()
     return f'''{chrom}'''
-    return 'This is the page in which i display only informations about entire chrosomes'
+
 
 
 @app.route('/unassembledsq')  # when on the web the user uses that / the function underneath is executed
