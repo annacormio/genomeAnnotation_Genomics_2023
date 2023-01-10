@@ -18,9 +18,9 @@ def active(func):
 
 #cannot import dataset reader cuz we would have a circular calling of classes
 class DatasetOps:
-    def __init__(self, ds:Dataset, dsAct):
+    def __init__(self, ds:Dataset, dfAct):
         self.ds = ds
-        self.dsAct = dsAct #this can be
+        self.dfAct = dfAct #this can be
 
     @active
     def basicInfo(self):

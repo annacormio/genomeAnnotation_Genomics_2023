@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from DatasetOps import *
 from Reader import *
 # Active Functions filename
-defaultActiveFileName = 'settings/activeFunctions.csv'
+defaultActiveFileName = '../settings/activeFunctions.csv'
 myfile = '../dataset/Homo_sapiens.GRCh38.85.gff3'
 
 app = Flask("Gene annotation")
@@ -87,27 +87,27 @@ if __name__ == "__main__":
     app.run(port=80)  # we want to have our application available online, port 80 is the default for http
 
 '''
-@app.route('/basicinfo')  # when on the web the user uses that / the function underneath is executed
+@app.route('/basicInfo')  # when on the web the user uses that / the function underneath is executed
 def a():
     return
 
 
-@app.route('/listID')  # when on the web the user uses that / the function underneath is executed
+@app.route('/uniqueID')  # when on the web the user uses that / the function underneath is executed
 def b():
     return 'This is the page in which i display the list of IDs'
 
 
-@app.route('/optypes')  # when on the web the user uses that / the function underneath is executed
+@app.route('/uniqueType')  # when on the web the user uses that / the function underneath is executed
 def c():
     return 'This is the page in which i display the list of operation types'
 
 
-@app.route('/countft')  # when on the web the user uses that / the function underneath is executed
+@app.route('/countSource')  # when on the web the user uses that / the function underneath is executed
 def d():
     return 'This is the page in which i display the count of features from one source'
 
 
-@app.route('/entries')  # when on the web the user uses that / the function underneath is executed
+@app.route('/countType')  # when on the web the user uses that / the function underneath is executed
 def e():
     return 'This is the page in which i display the number of entries for the operations'
 
