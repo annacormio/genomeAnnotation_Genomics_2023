@@ -5,20 +5,18 @@ app = Flask("Gene annotation")
 
 # Active Functions filename
 defaultActiveFileName = 'settings/activeFunctions.csv'
+#read the csv file containing active operations into a Dataframe with our specific reader implemented in the 'Reader.py' module
+dfAct = CsvReader(defaultActiveFileName).read().df
 #Reading the Human genome annotation file
 f = open('dataset/Homo_sapiens.GRCh38.85.gff3')
 ds = Gff3Reader(f).read()  #read the file into a Dataset with our specific reader
 
-#read the csv file containing active operations into a Dataframe with our specific reader implemented in the 'Reader.py' module
-dfAct = CsvReader(defaultActiveFileName).read().df
-
 #creating the DatasetOperation object with the ds and the dfAct just read
 dsOps = DatasetOps(ds, dfAct)
 
-
 #homepage
 @app.route('/')
-def homepage():
+def home():
     return render_template('active_operations.html')  # function used to import a html file into the py program without having to write in ptython
 
 #get basic info
