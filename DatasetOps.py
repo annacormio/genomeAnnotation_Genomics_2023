@@ -1,20 +1,7 @@
 from Dataset import *
 import pandas as pd
 
-def active(func):
-    def wrapper(*args):
-        self = args[0]  # in a Python decorator, args[0] corresponds to "self"
-        dfAct = self.dfAct
-        funcName = func.__name__
-        #filtering rows of the data
-        funcrow = dfAct[dfAct['Function'] == funcName]  # if the function exists, funcrow has only 1 row
 
-        if (funcrow.shape[0] == 1) and (funcrow.iloc[0]['Active'] == True):
-            return func(self)
-        else:
-            raise Exception("The function is not active or it does not exist")
-
-    return wrapper
 
 #cannot import dataset reader cuz we would have a circular calling of classes
 class DatasetOps:
@@ -25,10 +12,10 @@ class DatasetOps:
     @active
     def basicInfo(self):
         # lo metto così poi se decidiamo di cambiare sticaxxi
-        return Dataset(pd.DataFrame(data=self.ds.df.dtypes, columns=['dtype']))
+        return Dataset(pd.DataFrame(data=self.ds.get_df().dtypes, columns=['dtype']))
 
     def __uniqueList(self, column):
-        dfUnique = self.ds.df[column].unique()
+        dfUnique = self.ds.get_df()[column].unique()
         return pd.DataFrame(data=dfUnique, columns=[column])
 
     @active
@@ -40,7 +27,7 @@ class DatasetOps:
         return Dataset(self.__uniqueList(column='type').sort_values(by='type', ignore_index=True))
 
     def __uniqueCount(self, column):
-        return self.ds.df.groupby(column, dropna=False).size().sort_values(ascending=False)
+        return self.ds.get_df().groupby(column, dropna=False).size().sort_values(ascending=False)
 
     @active
     def countSource(self):
@@ -53,12 +40,12 @@ class DatasetOps:
     @active
     def entireChromosome(self):
         #select from the column source only the lines having GRCh38 as source
-        return Dataset(self.ds.df[self.ds.df['source'] == 'GRCh38'].drop(columns=['source'])) #we drop the source column from the dataframe
+        return Dataset(self.ds.get_df()[self.ds.get_df()['source'] == 'GRCh38'].drop(columns=['source'])) #we drop the source column from the dataframe
                                                                        # because it will provide only GRCh38 sources since that was the filtering parameter
 
     @active
     def unassembledSequence(self):
-        entire = self.entireChromosome().df
+        entire = self.entireChromosome().get_df()
         unassembled = entire[entire['type'] == 'supercontig']
 
         fraction = str(unassembled.shape[0]) + "/" + str(entire.shape[0])
@@ -69,9 +56,9 @@ class DatasetOps:
 
     @active
     def only_ensembl_havana(self):
-        return Dataset(self.ds.df[(self.ds.df['source'] == 'ensembl') |
-                               (self.ds.df['source'] == 'havana') |
-                               (self.ds.df['source'] == 'ensembl_havana')])
+        return Dataset(self.ds.get_df()[(self.ds.get_df()['source'] == 'ensembl') |
+                               (self.ds.get_df()['source'] == 'havana') |
+                               (self.ds.get_df()['source'] == 'ensembl_havana')])
 
     @active
     def entries_ensembl_havana(self):
@@ -80,7 +67,7 @@ class DatasetOps:
 
     @active
     def ensembl_havana_genes(self):
-        filtered_df = self.only_ensembl_havana().df
+        filtered_df = self.only_ensembl_havana().get_df()
         genes = filtered_df[(filtered_df['type'] == 'gene')]
         geneNames = []
 

@@ -27,8 +27,9 @@ class Gff3Reader(DatasetReader):
                          na_values='.')
         return Dataset(df)
 
-
+'''
 class CsvReader(DatasetReader):
     def read(self):
         df = pd.read_csv(self.filename)
         return Dataset(df)
+'''
