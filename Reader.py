@@ -2,29 +2,21 @@ from Dataset import *
 from abc import ABC, abstractmethod
 import pandas as pd
 
-'''
-#from Dataset import *
-filename = 'Homo_sapiens.GRCh38.85.gff3'
-df = pd.read_csv(file,delimiter="\t",comment="#",names=["seqID","source","type","start","end","score","strand","phase","attributes"], na_values='.' )
-'''
-
 
 # abstract class for reading the file
 class DatasetReader(ABC):
-    def __init__(self, filename):
+    def __init__(self, filename): #a reader in general receives a file as input
         self.filename = filename
 
     @abstractmethod
-    def read(self):
+    def read(self): #abstract reading method
         pass
 
 
-# implementation of the reader from gff3 files to pandas dataframes
-class Gff3Reader(DatasetReader):
+# implementation of the reader from gff3 files to pandas dataframes returning a Dataset
+class Gff3Reader(DatasetReader): #subclass of the abstract reading class
     def read(self):
-        df = pd.read_csv(self.filename, delimiter="\t", comment="#",
-                         names=["seqID", "source", "type", "start", "end", "score", "strand", "phase", "attributes"],
-                         na_values='.')
+        df = pd.read_csv(self.filename, delimiter="\t", comment="#",names=["seqID", "source", "type", "start", "end", "score", "strand", "phase", "attributes"], na_values='.') #with na_values we are substituting every '.' in the dataframe with NaN
         return Dataset(df)
 
 '''

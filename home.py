@@ -1,84 +1,76 @@
 from flask import Flask, render_template
 from Reader import Gff3Reader
+
 app = Flask("Gene annotation")
 
 #Reading the Human genome annotation file
 f = open('dataset/Homo_sapiens.GRCh38.85.gff3')
 ds = Gff3Reader(f).read()  #read the file into a Dataset with our specific reader
 
-#creating the DatasetOperation object with the ds and the dfAct just read
-#dsOps = DatasetOps(ds, dfAct)
-
 #homepage
 @app.route('/')
 def home():
-    return render_template('active_operations.html')  # function used to import a html file into the py program without having to write in ptython
+    return render_template('active_operations.html')  #referes to the active_operation.html file
 
 #get basic info
-@app.route('/basicInfo')  # when on the web the user uses that / the function underneath is executed
+@app.route('/basicInfo')  #/ indicates the reference of the link
 def a():
     basic = ds.basicInfo()
     return f'''{basic.get_df().to_html()}'''
 
 #list of unique ID
-@app.route('/uniqueID')  # when on the web the user uses that / the function underneath is executed
+@app.route('/uniqueID')
 def b():
     id = ds.uniqueID().get_df().to_html()
     return f'''{id}'''
 
-
-@app.route('/uniqueType')  # when on the web the user uses that / the function underneath is executed
+#list of unique Types
+@app.route('/uniqueType')
 def c():
     type = ds.uniqueType().get_df().to_html()
     return f'''{type}'''
 
-
-
-@app.route('/countSource')  # when on the web the user uses that / the function underneath is executed
+#count of sources
+@app.route('/countSource')
 def d():
     countS = ds.countSource().get_df().to_frame(name='count').to_html()
     return f'''{countS}'''
 
-
-
-@app.route('/countType')  # when on the web the user uses that / the function underneath is executed
+#count of types
+@app.route('/countType')
 def e():
     countT = ds.countType().get_df().to_frame(name='count').to_html()
     return f'''{countT}'''
 
-
-
-@app.route('/chromosome')  # when on the web the user uses that / the function underneath is executed
+#entire chromosomes only dataset
+@app.route('/chromosome')
 def f():
     chrom = ds.entireChromosome().get_df().to_html()
     return f'''{chrom}'''
 
-
-
-@app.route('/unassembledsq')  # when on the web the user uses that / the function underneath is executed
+#fraction of unassembled sequences and chromosomes
+@app.route('/unassembledsq')
 def g():
     unassembled = ds.unassembledSequence().get_df().to_html()
     return f'''{unassembled}'''
 
-
-
-@app.route('/onlyhavensbl')  # when on the web the user uses that / the function underneath is executed
+#dataset of ensembl, havana, ensembl_havana
+@app.route('/onlyhavensbl')
 def h():
     ens_hav_df = ds.only_ensembl_havana().get_df().to_html()
     return f'''{ens_hav_df}'''
 
-
-@app.route('/counthavensbl')  # when on the web the user uses that / the function underneath is executed
+#count of ensembl, havana, ensembl_havana types
+@app.route('/counthavensbl')
 def i():
     ens_hav_count = ds.entries_ensembl_havana().get_df().to_html()
     return f'''{ens_hav_count}'''
 
-
+#dataset of ensembl, havana, ensembl_havana gene Names
 @app.route('/havensblGeneNames')  # when on the web the user uses that / the function underneath is executed
 def l():
     genes = ds.ensembl_havana_genes().get_df().to_html()
     return f'''{genes}'''
-
 
 
 if __name__ == "__main__":
