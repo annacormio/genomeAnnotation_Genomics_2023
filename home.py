@@ -1,8 +1,6 @@
-from flask import Flask, render_template, request
-from Reader import *
+from flask import Flask, render_template
+from Reader import Gff3Reader
 app = Flask("Gene annotation")
-
-# Active Functions filename
 
 #Reading the Human genome annotation file
 f = open('dataset/Homo_sapiens.GRCh38.85.gff3')
@@ -19,66 +17,66 @@ def home():
 #get basic info
 @app.route('/basicInfo')  # when on the web the user uses that / the function underneath is executed
 def a():
-    basic = ds.basicInfo().df.to_html()
-    return f'''{basic}'''
+    basic = ds.basicInfo()
+    return f'''{basic.get_df().to_html()}'''
 
 #list of unique ID
 @app.route('/uniqueID')  # when on the web the user uses that / the function underneath is executed
 def b():
-    id = ds.uniqueID().df.to_html()
+    id = ds.uniqueID().get_df().to_html()
     return f'''{id}'''
 
 
 @app.route('/uniqueType')  # when on the web the user uses that / the function underneath is executed
 def c():
-    type = ds.uniqueType().df.to_html()
+    type = ds.uniqueType().get_df().to_html()
     return f'''{type}'''
 
 
 
 @app.route('/countSource')  # when on the web the user uses that / the function underneath is executed
 def d():
-    countS = ds.countSource().df.to_frame(name='count').to_html()
+    countS = ds.countSource().get_df().to_frame(name='count').to_html()
     return f'''{countS}'''
 
 
 
 @app.route('/countType')  # when on the web the user uses that / the function underneath is executed
 def e():
-    countT = ds.countType().df.to_frame(name='count').to_html()
+    countT = ds.countType().get_df().to_frame(name='count').to_html()
     return f'''{countT}'''
 
 
 
 @app.route('/chromosome')  # when on the web the user uses that / the function underneath is executed
 def f():
-    chrom = ds.entireChromosome().df.to_html()
+    chrom = ds.entireChromosome().get_df().to_html()
     return f'''{chrom}'''
 
 
 
 @app.route('/unassembledsq')  # when on the web the user uses that / the function underneath is executed
 def g():
-    unassembled = ds.unassembledSequence().df.to_html()
+    unassembled = ds.unassembledSequence().get_df().to_html()
     return f'''{unassembled}'''
 
 
 
 @app.route('/onlyhavensbl')  # when on the web the user uses that / the function underneath is executed
 def h():
-    ens_hav_df = ds.only_ensembl_havana().df.to_html()
+    ens_hav_df = ds.only_ensembl_havana().get_df().to_html()
     return f'''{ens_hav_df}'''
 
 
 @app.route('/counthavensbl')  # when on the web the user uses that / the function underneath is executed
 def i():
-    ens_hav_count = ds.entries_ensembl_havana().df.to_html()
+    ens_hav_count = ds.entries_ensembl_havana().get_df().to_html()
     return f'''{ens_hav_count}'''
 
 
 @app.route('/havensblGeneNames')  # when on the web the user uses that / the function underneath is executed
 def l():
-    genes = ds.ensembl_havana_genes().df.to_html()
+    genes = ds.ensembl_havana_genes().get_df().to_html()
     return f'''{genes}'''
 
 

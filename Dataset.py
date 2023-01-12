@@ -1,17 +1,17 @@
 from Decorator import *
 import pandas as pd
 
-#defaultActiveFileName = 'settings/activeFunctions.csv'
-#read the csv file containing active operations into a Dataframe with our specific reader implemented in the 'Reader.py' module
+
+# defaultActiveFileName = 'settings/activeFunctions.csv'
+# read the csv file containing active operations into a Dataframe with our specific reader implemented in the 'Reader.py' module
 
 class Dataset:
     def __init__(self, pd_dataframe_read):
         self.df = pd_dataframe_read
         # each operation should be marked as active through a decorator
 
-    '''def get_df(self):
+    def get_df(self):
         return self.df
-        '''
 
     @active
     def basicInfo(self):
@@ -62,8 +62,8 @@ class Dataset:
     @active
     def only_ensembl_havana(self):
         return Dataset(self.get_df()[(self.get_df()['source'] == 'ensembl') |
-                                        (self.get_df()['source'] == 'havana') |
-                                        (self.get_df()['source'] == 'ensembl_havana')])
+                                     (self.get_df()['source'] == 'havana') |
+                                     (self.get_df()['source'] == 'ensembl_havana')])
 
     @active
     def entries_ensembl_havana(self):
@@ -90,5 +90,3 @@ class Dataset:
 
         # we convert the list to set to delete duplicates
         return Dataset(pd.DataFrame(set(geneNames), columns=['gene_name']))
-
-
