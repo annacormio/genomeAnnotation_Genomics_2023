@@ -6,7 +6,7 @@ app = Flask("Gene annotation")
 #Reading the Human genome annotation file
 f = open('dataset/Homo_sapiens.GRCh38.85.gff3')
 ds = Gff3Reader(f).read()  #read the file into a Dataset with our specific reader
-
+ds.entries_ensembl_havana()
 #homepage
 @app.route('/')
 def home():
@@ -63,7 +63,7 @@ def h():
 #count of ensembl, havana, ensembl_havana types
 @app.route('/counthavensbl')
 def i():
-    ens_hav_count = ds.entries_ensembl_havana().get_df().to_html()
+    ens_hav_count = ds.entries_ensembl_havana().get_df().to_frame(name='count').to_html()
     return f'''{ens_hav_count}'''
 
 #dataset of ensembl, havana, ensembl_havana gene Names

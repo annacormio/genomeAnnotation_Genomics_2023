@@ -57,7 +57,7 @@ class Dataset:
     @active
     def entries_ensembl_havana(self): #counts of the types only for ensembl,havana and ensembl_havana dataframe
         filtered_ds = self.only_ensembl_havana() #
-        return Dataset(filtered_ds, self.dfAct).countType()
+        return filtered_ds.countType()
 
     @active
     def ensembl_havana_genes(self): #returns the name of the genes in the ensembl, havana and ensembl_havana dataframe
@@ -67,7 +67,7 @@ class Dataset:
 
         for index, row in genes.iterrows():
             attString = row['attributes']  # we select the attributes of a row
-            attList = attString.split(";")  # we devide the attributes by ";"
+            attList = attString.split(";")  # we divide the attributes by ";"
 
             # we create an attribute dictionary for code readability, populating it one attr. by one
             attDict = {}
@@ -78,4 +78,4 @@ class Dataset:
             geneNames.append(attDict['Name'])
 
         # we convert the list to set to delete duplicates
-        return Dataset(pd.DataFrame(set(geneNames), columns=['gene_name']))
+        return Dataset(pd.DataFrame(set(geneNames), columns=['gene_name'])) #set does not allow duplicates so all genes names repeated, if there are any, are dropped
