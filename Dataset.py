@@ -36,7 +36,7 @@ class Dataset:
 
     @active
     def entireChromosome(self): #returns a new dataframe selecting from the column source only the lines having GRCh38 as source
-        return Dataset(self.get_df()[self.get_df()['source'] == 'GRCh38'].drop(columns=['source']))
+        return Dataset(self.get_df()[self.get_df()['source'] == 'GRCh38'].drop(columns=['source']).reset_index())
         # we drop the source column from the dataframe because it will provide only GRCh38 sources since that was the filtering parameter
 
     @active
@@ -52,7 +52,7 @@ class Dataset:
     def only_ensembl_havana(self): #returns a new dataframe selecting only the lines having ensembl,havana and ensembl_havana as source
         return Dataset(self.get_df()[(self.get_df()['source'] == 'ensembl') |
                                      (self.get_df()['source'] == 'havana') |
-                                     (self.get_df()['source'] == 'ensembl_havana')])
+                                     (self.get_df()['source'] == 'ensembl_havana')].reset_index())
 
     @active
     def entries_ensembl_havana(self): #counts of the types only for ensembl,havana and ensembl_havana dataframe
