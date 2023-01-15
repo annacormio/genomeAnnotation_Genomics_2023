@@ -16,8 +16,3 @@ def active(func):
 
     return wrapper
 
-
-#da togliere alla consegna---->
-
-# self = args[0]  # in a Python decorator, args[0] corresponds to "self"
-# dfAct = self.dfAct
