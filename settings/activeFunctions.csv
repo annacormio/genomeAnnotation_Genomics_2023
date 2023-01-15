@@ -6,6 +6,6 @@ countSource,True
 countType,True
 entireChromosome,True
 unassembledSequence,True
-only_ensembl_havana,True
-entries_ensembl_havana,True
-ensembl_havana_genes,True
+onlyEnsemblHavana,True
+entriesEnsemblHavana,True
+ensemblHavanaGenes,True
