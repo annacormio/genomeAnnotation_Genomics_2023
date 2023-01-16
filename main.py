@@ -11,8 +11,15 @@ ds = Gff3Reader(f).read()  # read the file into a Dataset with our specific read
 # homepage
 @app.route('/')
 def home():
-    return render_template('active_operations.html')  # referes to the active_operation.html file
+    return render_template('homepage.html')  # referes to the homepage.html file
 
+@app.route('/documentation')
+def doc():
+    return 'hi'
+
+@app.route('/active_op')
+def operations():
+    return render_template('active_operations.html')
 
 # get basic info
 @app.route('/basicInfo')  # / indicates the reference of the link

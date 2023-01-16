@@ -19,7 +19,9 @@ class Dataset:
 
     #
     @active
-    def basicInfo(self):  # this method returns a Dataset with the column names and the data type they contain
+    def basicInfo(self):
+        """
+        """
         dfBasic = (self.getDf().dtypes.reset_index())
         return Dataset(dfBasic.rename(columns={"index": "column_name", 0: "data type"}))
 
