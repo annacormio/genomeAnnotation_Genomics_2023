@@ -27,12 +27,10 @@ class Gff3Reader(DatasetReader):
         '''
         Overriding of the abstract method read(): given a Gff3 file, it returns a Dataset object
         '''
-        df = pd.read_csv(self.filename, delimiter="\t", comment="#",names=["seqID", "source", "type", "start", "end", "score", "strand", "phase", "attributes"], na_values='.') #with na_values we are substituting every '.' in the dataframe with NaN
-        return Dataset(df)
+        splitName=self.filename.split('.') # split the name in a list by '.' as delimiter
+        if 'gff3' != splitName[-1]:        # verify the file type by considering the last string, which should be gff3
+            raise Exception('Sorry, the program requires a gff3 file.') # if not gff3, the reader will not work
+        else: #the file is read
+            df = pd.read_csv(self.filename, delimiter="\t", comment="#",names=["seqID", "source", "type", "start", "end", "score", "strand", "phase", "attributes"], na_values='.') #with na_values we are substituting every '.' in the dataframe with NaN
+            return Dataset(df)
 
-'''
-class CsvReader(DatasetReader):
-    def read(self):
-        df = pd.read_csv(self.filename)
-        return Dataset(df)
-'''

@@ -8,8 +8,8 @@ import numpy as np
 app = Flask("Gene annotation")
 
 # Reading the Human genome annotation file
-f = open('dataset/Homo_sapiens.GRCh38.85.gff3')
-ds = Gff3Reader(f).read()  # read the file into a Dataset with our specific reader
+filename = 'dataset/Homo_sapiens.GRCh38.85.gff3'
+ds = Gff3Reader(filename).read()  # read the file into a Dataset with our specific reader
 
 
 def testExTime():
