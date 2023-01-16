@@ -77,7 +77,7 @@ class Dataset:
         Returns a Dataset object selecting from the column source only the rows having GRCh38 as source
         '''
         return Dataset(self.getDf()[self.getDf()['source'] == 'GRCh38'].drop(columns=['source']))
-        # we drop the source column from the dataframe because it will provide only GRCh38 sources since that was the filtering parameter
+        # we drop the source column from the DataFrame because it will provide only GRCh38 sources since that was the filtering parameter
 
     @active
     def unassembledSequence(
@@ -85,12 +85,12 @@ class Dataset:
         '''
         Returns a Dataset object with the fraction and percentage of unassembled sequences over entire chromosomes set
         '''
-        entire = self.entireChromosome().getDf()  # retrieves the dataframe of only GRCh38 source
+        entire = self.entireChromosome().getDf()  # retrieves the Dataframe of only GRCh38 source
         unassembled = entire[
-            entire['type'] == 'supercontig']  # selects from these lines only the once of type supercontig
+            entire['type'] == 'supercontig']  # selects from these rows only the ones of type supercontig
         fraction = str(unassembled.shape[0]) + "/" + str(entire.shape[0])  # fraction
         perc = round(float(unassembled.shape[0]) * 100 / float(entire.shape[0]),
-                     2)  # rounded the percentage on 2 decimal
+                     2)  # percentage rounded on 2 decimal
         values = [fraction, perc]
         return Dataset(pd.DataFrame([values], columns=["fraction", "percentage %"]))
 
@@ -109,7 +109,7 @@ class Dataset:
         '''
         Returns a Dataset object with the count of the types of sequences in the ensembl, havana and ensembl_havana Dataset
         '''
-        filteredDs = self.onlyEnsemblHavana()  #
+        filteredDs = self.onlyEnsemblHavana()  
         return filteredDs.countType()
 
     @active
@@ -125,7 +125,7 @@ class Dataset:
             attString = row['attributes']  # we select the attributes of a row
             attList = attString.split(";")  # we divide the attributes by ";"
 
-            # we create an attribute dictionary for code readability, populating it one attr. by one
+            # we create an attribute dictionary for code readability, populating it one attribute by one
             attDict = {}
             for i in attList:
                 (key, value) = i.split("=")
