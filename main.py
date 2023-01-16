@@ -14,16 +14,18 @@ def home():
     return render_template('homepage.html')  # referes to the homepage.html file
     #render_template by default retrieves the html file from the folder named 'templates'
 
-@app.route('/documentation')
+#documentation
+@app.route('/documentation') # / indicates the reference of the link
 def doc():
     return 'hi'
 
+#active operations
 @app.route('/active_op')
 def operations():
     return render_template('active_operations.html')
 
 # get basic info
-@app.route('/basicInfo')  # / indicates the reference of the link
+@app.route('/basicInfo')  
 def a():
     basic = ds.basicInfo().getDf().to_html()
     return basic
@@ -33,63 +35,63 @@ def a():
 @app.route('/uniqueID')
 def b():
     idUn = ds.uniqueID().getDf().to_html()
-    return f'''{idUn}'''
+    return idUn
 
 
 # list of unique Types
 @app.route('/uniqueType')
 def c():
     typeL = ds.uniqueType().getDf().to_html()
-    return f'''{typeL}'''
+    return typeL
 
 
 # count of sources
 @app.route('/countSource')
 def d():
     countS = ds.countSource().getDf().to_html()
-    return f'''{countS}'''
+    return countS
 
 
 # count of types
 @app.route('/countType')
 def e():
     countT = ds.countType().getDf().to_html()
-    return f'''{countT}'''
+    return countT
 
 
 # entire chromosomes only dataset
 @app.route('/chromosome')
 def f():
     chrom = ds.entireChromosome().getDf().to_html()
-    return f'''{chrom}'''
+    return chrom
 
 
 # fraction of unassembled sequences and chromosomes
 @app.route('/unassembledsq')
 def g():
     unassembled = ds.unassembledSequence().getDf().to_html()
-    return f'''{unassembled}'''
+    return unassembled
 
 
 # dataset of ensembl, havana, ensembl_havana
 @app.route('/onlyhavensbl')
 def h():
     ensHavDf = ds.onlyEnsemblHavana().getDf().to_html()
-    return f'''{ensHavDf}'''
+    return ensHavDf
 
 
 # count of ensembl, havana, ensembl_havana types
 @app.route('/counthavensbl')
 def i():
     ensHavCount = ds.entriesEnsemblHavana().getDf().to_html()
-    return f'''{ensHavCount}'''
+    return ensHavCount
 
 
 # dataset of ensembl, havana, ensembl_havana gene Names
 @app.route('/havensblGeneNames')  # when on the web the user uses that / the function underneath is executed
 def l():
     genes = ds.ensemblHavanaGenes().getDf().to_html()
-    return f'''{genes}'''
+    return genes
 
 
 if __name__ == "__main__":

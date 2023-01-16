@@ -28,7 +28,7 @@ class Dataset:
         '''
         Private method that given the column label returns a Pandas DataFrame with the column's unique values
         '''
-        dfUnique = self.getDf()[column].unique() #retrive the column of interest from the dataframe and delete all duplicates using unique()
+        dfUnique = self.getDf()[column].unique() #retrive the column of interest from the DataFrame and delete all duplicates using unique()
         return pd.DataFrame(data=dfUnique, columns=[column])
 
     @active
@@ -49,7 +49,7 @@ class Dataset:
         '''
         Private method that given the column label returns a Pandas DataFrame with the count of each one of its values
         '''
-        uniqueDf = self.getDf().groupby(column, dropna=False).size().sort_values(ascending=False).reset_index()  # reset_index returns a DF with two columns
+        uniqueDf = self.getDf().groupby(column, dropna=False).size().sort_values(ascending=False).reset_index()  # reset_index() returns a DataFrame with two columns
         return uniqueDf.rename(columns={0: "count"})
 
     @active
@@ -114,7 +114,7 @@ class Dataset:
 
         for index, row in genes.iterrows():
             attString = row['attributes']  # we select the attributes of a row
-            attList = attString.split(";")  # we divide the attributes by ";"
+            attList = attString.split(";")  # we divide the attributes by ';' and create a list of them (attList) 
 
             # we create an attribute dictionary for code readability, populating it one attribute by one
             attDict = {}
