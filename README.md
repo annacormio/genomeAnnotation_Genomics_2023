@@ -16,6 +16,10 @@ Following the project specifications, we implemented the abstract interface <b>D
 
 Gff3Reader is the realisation of the DatasetReader abstract interface, a concrete class that accepts a tabular file of format GFF3 as an input and returns a Dataset object. 
 
+### to edit 
+The specificity for the gff3 format was pursued by analysing the file directory: we split the whole using ‘.’ as delimiter, considering the specification of the file type is contained in the last string (e.g. ‘Auto.tsv’  last string = file type = ‘tsv’  raises exception; Auto.tsv.gff3  last string = file type = ‘gff3’  works).
+### to edit
+
 The Dataset class is built around a Pandas Dataframe and can perform a list of active operations on that, which are listed as its public methods; all of those operations return a Dataset object. 
 The only three private methods found are: 
 *	<b><i>__uniqueList(column)</b></i> – given a column label, it returns the unique values in it in the form of a Pandas DataFrame; 
