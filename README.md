@@ -31,7 +31,7 @@ The only two private methods found in the Dataset class are:
 
 As for the other methods found, which return all a Dataset object:
 
-*	<b><i>getDf()</b></i> – retrieves the private attribute <i><b>__self.df</i></b> (type Pandas DataFrame);
+*	<b><i>getDf()</b></i> – retrieves the private attribute <i><b>self.__df</i></b> (type Pandas DataFrame);
 *	<b><i>basicInfo()</b></i> – returns a Dataset object which provides us the column names and the type of the data contained in each of them; i.e. it can be used to retrieve the basic information on the Dataset obtained from the GFF3 file reading;
 *	<b><i>uniqueID()</b></i> – returns unique values of column seqID (no duplicates);
 *	<b><i>uniqueType()</b></i> – returns a Dataset object which informs us on the list of unique type of operations available in the dataset;
