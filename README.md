@@ -43,7 +43,9 @@ As for the other methods found, which return all a Dataset object:
 *	<b><i>entriesEnsemblHavana()</b></i> – returns a Dataset object with the counts of the number of entries for each unique type found in the <i><b>onlyEnsemblHavana()</b></i> Dataset;
 *	<b><i>ensemblHavanaGenes()</b></i> – returns a Dataset object with the name of the genes present in the Dataset obtained by <i><b>onlyEnsemblHavana()</b></i>.
 
-The decorator implemented in our program read a .csv file containing the name of a function and if it is active or not (True or False). If it is not active, when the user tries to execute the operation in the web interface it gives us an Internal Server error while if the operation is active, we see the returning Dataset printed in a table.
+The decorator implemented in our program reads a .csv file containing the name of a function and if it is active or not (True or False). 
+* If the operation is not active, when the user tries to execute it in the web interface it gives an Internal Server error 
+* If the operation is active, the user sees the returning Dataset printed in a table.
 
 >A note on <b>active operations</b> and the <b>decorator</b> that manages them: our choice of implementation was to use a csv file to compile the list of active >operation, and a function decorator to manage them. This meant that our UML class diagram could not figure nor the registry of active operation, nor the decorator, >albeit they both interact with the class Dataset, since it must check for an operation to be active before performing them. For coherence, and as we found it to be >rather disorienting, we also did not add the collaboration to the CRC cards.
 
@@ -53,10 +55,6 @@ The software functions through the execution of the main module implemented with
 2. the active operations to perform on the Dataset. 
 -> The link to the operations contains a list of the operations having each one a link that leads to the printing of the resulting table in a new tab. 
 The web implementation is written in .html files that are then easily integrated with Flask using ‘render_template’.
-
-The decorator implemented in our program reads a .csv file containing the name of a function and if it is active or not (True or False). 
-* If the operation is not active, when the user tries to execute it in the web interface it gives an Internal Server error 
-* If the operation is active, the user sees the returning Dataset printed in a table.
 
 
 The software functions through the execution of the main module implemented with Flask. There we read the .gff3 file using the Gff3Reader. Using the link the user visualizes an hompegage that contains two links: 
