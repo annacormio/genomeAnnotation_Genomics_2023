@@ -49,13 +49,6 @@ The decorator implemented in our program reads a .csv file containing the name o
 
 >A note on <b>active operations</b> and the <b>decorator</b> that manages them: our choice of implementation was to use a csv file to compile the list of active >operation, and a function decorator to manage them. This meant that our UML class diagram could not figure nor the registry of active operation, nor the decorator, >albeit they both interact with the class Dataset, since it must check for an operation to be active before performing them. For coherence, and as we found it to be >rather disorienting, we also did not add the collaboration to the CRC cards.
 
-The software functions through the execution of the main module implemented with Flask. There we read the .gff3 file using the Gff3Reader. Using the link we visualize an hompegage that contains two links: 
-
-1. the project documentation with CRC cards and UML 
-2. the active operations to perform on the Dataset. 
--> The link to the operations contains a list of the operations having each one a link that leads to the printing of the resulting table in a new tab. 
-The web implementation is written in .html files that are then easily integrated with Flask using ‘render_template’.
-
 
 The software functions through the execution of the main module implemented with Flask. There we read the .gff3 file using the Gff3Reader. Using the link the user visualizes an hompegage that contains two links: 
 * one for the <b>project documentation</b> with CRC cards and UML; 
