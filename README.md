@@ -25,9 +25,9 @@ The Dataset class is built around a Pandas Dataframe and can perform a list of a
 
 The only two private methods found in the Dataset class are: 
 *	<b><i>__uniqueList(column)</b></i> – given a column label, it returns the unique values in it in the form of a Pandas DataFrame; 
-    implemented to exploit reusability of code, as it is utilised by both <i><b>uniqueID</i></b> and <i><b>uniqueType</i></b>. 
+    implemented to exploit reusability of code, as it is utilised by both <i><b>uniqueID()</i></b> and <i><b>uniqueType()</i></b>. 
 * <b><i>__uniqueCount(column)</b></i> – given a column label, it returns the count of each of its values. Returns a Pandas DataFrame.
-    As above, implemented to avoid repetition of code; it is utilised by <i><b>countSource</b></i> and <i><b>countType</i></b>.
+    As above, implemented to avoid repetition of code; it is utilised by <i><b>countSource()</b></i> and <i><b>countType()</i></b>.
 
 As for the other methods found, which return all a Dataset object:
 
