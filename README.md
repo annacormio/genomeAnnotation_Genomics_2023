@@ -16,7 +16,7 @@ The size of the gff3 file 'Homo_sapiens.GRCh38.85.gff3' is too big to be uploade
  
 Following the project specifications, we implemented the abstract interface <b>DatasetReader</b>, which presents the abstract method <i><b>read()</i></b>, overridden by the <i><b>read()</i></b> method of the <b>Gff3Reader</b>, the DatasetReader subclass. 
 
-Gff3Reader is thus the realisation of the DatasetReader abstract interface; it is a concrete class that accepts a tabular file of format GFF3 as an input and returns a Dataset object. We made sure that the class Gff3Reader was specific for the GFF3 format by requesting that the fiel directory ended with '.gff3'. We analysed the file directory by splitting the whole using ‘.’ as delimiter, considering that the specification of the file type is contained in the last string, <i>e.g.</i> 
+Gff3Reader is thus the realisation of the DatasetReader abstract interface; it is a concrete class that accepts a tabular file of format gff3 as an input and returns a Dataset object. We made sure that the class Gff3Reader was specific for the gff3 format by requesting that the fiel directory ended with '.gff3'. We analysed the file directory by splitting the whole using ‘.’ as delimiter, considering that the specification of the file type is contained in the last string, <i>e.g.</i> 
 
 * ‘Auto.tsv’ ->  last string = file type = ‘tsv’ -> raises exception
 * ‘Homo_sapiens.GRCh38.85.gff3’ -> last string = file type = ‘gff3’ -> works
