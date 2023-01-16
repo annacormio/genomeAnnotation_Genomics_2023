@@ -25,7 +25,7 @@ def operations():
 @app.route('/basicInfo')  # / indicates the reference of the link
 def a():
     basic = ds.basicInfo().getDf().to_html()
-    return f'''{basic}'''
+    return basic
 
 
 # list of unique ID
