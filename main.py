@@ -17,7 +17,7 @@ def home():
 #documentation
 @app.route('/documentation') # / indicates the reference of the link
 def doc():
-    return 'hi'
+    return render_template('documentation.html')
 
 #active operations
 @app.route('/active_op')
