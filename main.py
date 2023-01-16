@@ -14,10 +14,12 @@ def home():
     return render_template('homepage.html')  # referes to the homepage.html file
     #render_template by default retrieves the html file from the folder named 'templates'
 
+#documentation
 @app.route('/documentation') # / indicates the reference of the link
 def doc():
     return 'hi'
 
+#active operations
 @app.route('/active_op')
 def operations():
     return render_template('active_operations.html')
