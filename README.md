@@ -37,7 +37,7 @@ As for the other methods found, which return all a Dataset object:
 *	<b><i>uniqueType()</b></i> – returns a Dataset object which informs us on the list of unique type of operations available in the dataset;
 *	<b><i>countSource()</b></i> – returns a Dataset object with the count of Source column – for each source, how many entries do we have of it?
 *	<b><i>countType()</b></i> – returns a Dataset object wuth the count of Type column – for each type, how many entries do we have? 
-*	<b><i>entireChromosome()</b></i> – filters the column source to identify only entire chromosomes rows and returns a Dataset object with them – <i>i.e.</i> only rows with source GRCh38 are selected and returned as a new dataset object;
+*	<b><i>entireChromosome()</b></i> – filters the column source to identify only entire chromosomes rows, which are returned as a Dataset object – <i>i.e.</i> only rows with source GRCh38 are selected and returned as a new dataset object;
 *	<b>unassembledSequence()</b> – returns a Dataset object with the fraction and the percentage of the unassembled sequences over the dataset provided by entireChromosome(), retrieving first the Dataset obtained by ‘<b><i>entireChromosome()</b></i>’ method and then selecting only the entries of type ‘superconting’; eventually, it performs the fraction of the unassembled over the total entries to obtain the ratio, which is expressed also as percentage;
 *	<b><i>onlyEnsemblHavana()</b></i> – returns a Dataset object with only entries from sources ensembl, havana and ensembl_havana;
 *	<b><i>entriesEnsemblHavana()</b></i> – returns a Dataset object with the counts of the number of entries for each unique type found in the <i><b>onlyEnsemblHavana()</b></i> Dataset;
