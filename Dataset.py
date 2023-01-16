@@ -8,8 +8,7 @@ class Dataset:
         Init function: the Dataset is built on a Pandas DataFrame
         """
         self.__df = pdDataframeRead  # private attribute
-
-    # @active decorator is called over each function
+    
     def getDf(self):
         """
          Retrieves the private Pandas DataFrame attribute
@@ -17,7 +16,7 @@ class Dataset:
 
         return self.__df
 
-    #
+    #@active decorator is called over each function 
     @active
     def basicInfo(self):  
         '''
@@ -128,11 +127,12 @@ class Dataset:
             # we create an attribute dictionary for code readability, populating it one attribute by one
             attDict = {}
             for i in attList:
-                (key, value) = i.split("=")
-                attDict[key] = value
+                (key, value) = i.split("=") # we divide the elements of the attList by "="
+                attDict[key] = value # we add the elements in the dictionary
 
-            geneNames.append(attDict['Name'])
+            geneNames.append(attDict['Name']) # we add the gene name in the genNames list 
 
-        # we convert the list to set to delete duplicates
+        # we convert the geneName list to set to delete duplicates 
+        # set does not allow duplicates so all genes names repeated, if there are any, are dropped
         return Dataset(pd.DataFrame(set(geneNames), columns=[
-            'gene_name']))  # set does not allow duplicates so all genes names repeated, if there are any, are dropped
+            'gene_name']))  
