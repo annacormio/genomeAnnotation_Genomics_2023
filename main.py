@@ -12,6 +12,7 @@ ds = Gff3Reader(f).read()  # read the file into a Dataset with our specific read
 @app.route('/')
 def home():
     return render_template('homepage.html')  # referes to the homepage.html file
+    #render_template by default retrieves the html file from the folder named 'templates'
 
 @app.route('/documentation')
 def doc():
