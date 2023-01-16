@@ -31,14 +31,14 @@ The only two private methods found in the Dataset class are:
 
 As for the other methods found, which return all a Dataset object:
 
-*	<b><i>getDf()</b></i> – retrieves the private attribute <i><b>__pdDataframeRead</i></b> (type Pandas DataFrame);
+*	<b><i>getDf()</b></i> – retrieves the private attribute <i><b>__self.df</i></b> (type Pandas DataFrame);
 *	<b><i>basicInfo()</b></i> – returns a Dataset object which provides us the column names and the type of the data contained in each of them; i.e. it can be used to retrieve the basic information on the Dataset obtained from the GFF3 file reading;
 *	<b><i>uniqueID()</b></i> – returns unique values of column seqID (no duplicates);
 *	<b><i>uniqueType()</b></i> – returns a Dataset object which informs us on the list of unique type of operations available in the dataset;
 *	<b><i>countSource()</b></i> – returns count of Source column – for each source, how many entries do we have of it?
 *	<b><i>countType()</b></i> – returns count of Type column – for each type, how many entries do we have? 
 *	<b><i>entireChromosome()</b></i> – filters the column source to identify only entire chromosomes rows – i.e. only rows with source GRCh38 are selected and returned as a new dataset object;
-*	<b>unassembledSequence()</b> – returns fraction and percentage of the unassembled sequences over the dataset provided by entireChromosome(), retrieving first the dataset obtained by ‘entireChromosome()’ method and then selecting only the entries of type ‘superconting’; eventually, it performs the fraction of the unassembled over the total entries to obtain the ratio, which is expressed also as percentage;
+*	<b>unassembledSequence()</b> – returns fraction and percentage of the unassembled sequences over the dataset provided by entireChromosome(), retrieving first the dataset obtained by ‘<b><i>entireChromosome()</b></i>’ method and then selecting only the entries of type ‘superconting’; eventually, it performs the fraction of the unassembled over the total entries to obtain the ratio, which is expressed also as percentage;
 *	<b><i>onlyEnsemblHavana()</b></i> – returns a new dataset with only entries from sources ensembl, havana and ensembl_havana;
 *	<b><i>entriesEnsemblHavana()</b></i> – counts the number of entries for each unique type found in the <i><b>onlyEnsemblHavana()</b></i> Dataset;
 *	<b><i>ensemblHavanaGenes()</b></i> – returns the name of the genes present in the dataset obtained by <i><b>onlyEnsemblHavana()</b></i>.
